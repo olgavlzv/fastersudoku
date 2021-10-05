@@ -11,16 +11,15 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.Locale;
-import java.util.concurrent.CountDownLatch;
 
 public class BoardActivity extends AppCompatActivity {
 
@@ -34,6 +33,8 @@ public class BoardActivity extends AppCompatActivity {
 
     CountDownTimer timer;
 
+    TextView bigRect;
+
     private class NumButton {
         int value;
         Button bt;
@@ -42,7 +43,7 @@ public class BoardActivity extends AppCompatActivity {
             value = initValue;
             bt = new Button(THIS);
             bt.setTextColor(Color.WHITE);
-            bt.setTextSize(24);
+            bt.setTextSize(40);
             bt.setBackgroundColor(Color.TRANSPARENT);
             bt.setTypeface(ResourcesCompat.getFont(BoardActivity.this, R.font.northern_gardarika));
             bt.setText(String.valueOf(value));
@@ -199,6 +200,7 @@ public class BoardActivity extends AppCompatActivity {
     public void pauseGame() {
         if (pauseFlag) {
             pauseFlag = false;
+            bigRect.setTextSize(14.0f);
             timerRemain = mTimeLeft;
             timer = new CountDownTimer(timerRemain, 1000) {
                 @Override
@@ -217,6 +219,7 @@ public class BoardActivity extends AppCompatActivity {
             }.start();
         } else {
             pauseFlag = true;
+            bigRect.setTextSize(11414.0f);
             timer.cancel();
         }
     }
@@ -256,7 +259,7 @@ public class BoardActivity extends AppCompatActivity {
     NumButton[] numpad;
     String input;
 
-    LinearLayout backLayout;
+    LinearLayout backLayout, pauseLayout;
     TableLayout tl, numTl, upTl;
 
     @Override
@@ -272,7 +275,7 @@ public class BoardActivity extends AppCompatActivity {
         Intent startIntent = getIntent();
         commonScore = startIntent.getIntExtra("cscore", 0);
         timerRemain = startIntent.getLongExtra("rtimer", 0);
-        addTimer = startIntent.getLongExtra("addtimer", 30000);
+        addTimer = startIntent.getLongExtra("addtimer", 60000);
         holesInBoard = startIntent.getIntExtra("holes", 9);
 
         backLayout = (LinearLayout) findViewById(R.id.backLayout);
@@ -286,15 +289,10 @@ public class BoardActivity extends AppCompatActivity {
         nowScore.setGravity(Gravity.CENTER);
         upTr.addView(nowScore);
         txtTimer = new TextView(this);
-        txtTimer.setBackgroundColor(Color.LTGRAY);
         txtTimer.setGravity(Gravity.CENTER);
-        txtTimer.setTextColor(Color.DKGRAY);
+        txtTimer.setTextColor(Color.WHITE);
         txtTimer.setTextSize(36);
         upTr.addView(txtTimer);
-        Button btnPause = new Button(this);
-        btnPause.setText("Pause");
-        btnPause.setOnClickListener(v -> pauseGame());
-        upTr.addView(btnPause);
         upTl.addView(upTr);
         upTl.setShrinkAllColumns(true);
         upTl.setStretchAllColumns(true);
@@ -302,6 +300,18 @@ public class BoardActivity extends AppCompatActivity {
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         backLayout.addView(upTl, timerParams);
+
+        pauseLayout = new TableLayout(this);
+        bigRect = new TextView(this);
+        bigRect.setTextSize(14);
+        bigRect.setText("0");
+        bigRect.setTextColor(Color.parseColor("#FF1F204C"));
+        TableLayout.LayoutParams pauseParams = new TableLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+        pauseLayout.addView(bigRect);
+        backLayout.addView(pauseLayout, pauseParams);
 
         int[][] beginBoard = GenerateBoard.generate(fullViewBoard, holesInBoard);
         board = new Cell[fullViewBoard][fullViewBoard];
