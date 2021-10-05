@@ -43,7 +43,10 @@ public class BoardActivity extends AppCompatActivity {
         public NumButton(int initValue, Context THIS) {
             value = initValue;
             bt = new Button(THIS);
-            bt.setTextColor(Color.BLUE);
+            bt.setTextColor(Color.WHITE);
+            bt.setTextSize(24);
+            bt.setBackgroundColor(Color.TRANSPARENT);
+            bt.setTypeface(ResourcesCompat.getFont(BoardActivity.this, R.font.northern_gardarika));
             bt.setText(String.valueOf(value));
             bt.setOnClickListener(v -> {
                 for (int i = 0; i < fullViewBoard; i++) {
