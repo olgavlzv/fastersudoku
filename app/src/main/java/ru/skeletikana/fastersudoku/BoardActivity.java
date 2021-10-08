@@ -215,6 +215,7 @@ public class BoardActivity extends AppCompatActivity {
                     Intent intent = new Intent(BoardActivity.this, FinishActivity.class);
                     intent.putExtra("fscore", finalScore);
                     startActivity(intent);
+                    finish();
                 }
             }.start();
         } else {
