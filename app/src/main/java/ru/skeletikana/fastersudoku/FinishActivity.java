@@ -10,7 +10,7 @@ import android.widget.TextView;
 public class FinishActivity extends AppCompatActivity {
 
     TextView txtScore;
-    Button btnRetry, btnExitToMenu;
+    Button btnExitToMenu;
 
     @Override
     public void onBackPressed() {
@@ -31,12 +31,7 @@ public class FinishActivity extends AppCompatActivity {
         txtScore = (TextView) findViewById(R.id.txtScore);
         txtScore.setText(fScore);
 
-        btnRetry = (Button) findViewById(R.id.btnRetry);
         btnExitToMenu = (Button) findViewById(R.id.btnExitToMenu);
-
-        btnRetry.setOnClickListener(v -> {
-            //Intent intent = new Intent(FinishActivity.this, );
-        });
 
         btnExitToMenu.setOnClickListener(v -> {
             Intent intent = new Intent(FinishActivity.this, MainActivity.class);
