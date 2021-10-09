@@ -22,7 +22,7 @@
             android:shadowDx="7"
             android:shadowDy="7"
             android:shadowRadius="7"
-            android:text="Faster sudoku"
+            android:text="@string/appName"
             android:textColor="@color/white"
             android:textSize="68sp" />
 
@@ -37,7 +37,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="10sp" />
+            android:layout_height="11sp" />
 
         <Button
             android:id="@+id/btnInfo"
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="80sp"
             android:layout_marginEnd="80sp"
-            android:text="Info"
+            android:text="@string/btnInfo"
             tools:ignore="MissingConstraints" />
 
     </LinearLayout>

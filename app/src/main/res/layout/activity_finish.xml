@@ -10,7 +10,7 @@
 
     <Space
         android:layout_width="wrap_content"
-        android:layout_height="250dp" />
+        android:layout_height="230dp" />
 
     <TextView
         android:id="@+id/txtScore"
@@ -21,6 +21,19 @@
         android:text="0"
         android:textColor="@color/white"
         android:textSize="90sp" />
+
+    <TextView
+        android:id="@+id/txtBest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Best score: 0"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30sp" />
 
     <LinearLayout
         android:layout_width="match_parent"

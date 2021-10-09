@@ -12,4 +12,6 @@
     <string name="retry">Retry</string>
     <string name="to_menu">To Menu</string>
     <string name="play">Play</string>
+    <string name="appName">Faster sudoku</string>
+    <string name="btnInfo">Info</string>
 </resources>
