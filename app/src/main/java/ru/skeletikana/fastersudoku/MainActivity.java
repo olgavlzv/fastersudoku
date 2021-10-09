@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog.Builder builderInfo = new AlertDialog.Builder(MainActivity.this);
         builderInfo.setTitle("Faster Sudoku")
-                .setMessage("version: 1.0\nmade by skeletikana, 2021")
+                .setMessage("version: 1.0\nmade by nippyfox & skeletikana, 2021")
                 .setPositiveButton("OK", (dialog, id) -> {
                     dialog.cancel();
                 });
