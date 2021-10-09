@@ -27,8 +27,8 @@ public class BoardActivity extends AppCompatActivity {
     long addTimer;
     long timerRemain;
     static int holesInBoard;
-    static int fullViewBoard = 9;
-    int cellViewBoard = 3;
+    static int cellViewBoard = 3;
+    static int fullViewBoard = cellViewBoard * cellViewBoard;
     boolean pauseFlag = false;
 
     CountDownTimer timer;

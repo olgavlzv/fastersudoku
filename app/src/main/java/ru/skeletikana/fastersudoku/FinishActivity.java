@@ -36,7 +36,6 @@ public class FinishActivity extends AppCompatActivity {
         txtScore = (TextView) findViewById(R.id.txtScore);
         txtScore.setText(fScore);
 
-        txtBest = (TextView) findViewById(R.id.txtBest);
         btnExitToMenu = (Button) findViewById(R.id.btnExitToMenu);
 
         btnExitToMenu.setOnClickListener(v -> {

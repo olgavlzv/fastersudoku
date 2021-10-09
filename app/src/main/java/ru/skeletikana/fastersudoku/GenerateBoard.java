@@ -125,7 +125,7 @@ public class GenerateBoard {
             }
         }
 
-        for (int i = 0; i < 150; i++) {
+        for (int i = 0; i < 250; i++) {
             int step = random.nextInt(5);
             switch (step) {
                 case 0:
