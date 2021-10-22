@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog.Builder builderInfo = new AlertDialog.Builder(MainActivity.this);
         builderInfo.setTitle("Faster Sudoku")
-                .setMessage("version: 1.0\nmade by nippyfox & skeletikana, 2021")
+                .setMessage("version: 0.2\nmade by nippyfox & skeletikana, 2021")
                 .setPositiveButton("OK", (dialog, id) -> {
                     dialog.cancel();
                 });
