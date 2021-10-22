@@ -33,7 +33,7 @@ public class BoardActivity extends AppCompatActivity {
 
     CountDownTimer timer;
 
-    TextView bigRect;
+    TextView bigRect, pauseTextScr, smallRect;
 
     private class NumButton {
         int value;
@@ -200,7 +200,10 @@ public class BoardActivity extends AppCompatActivity {
     public void pauseGame() {
         if (pauseFlag) {
             pauseFlag = false;
-            bigRect.setTextSize(14.0f);
+            bigRect.setTextSize(5.0f);
+            smallRect.setTextSize(5.0f);
+            pauseTextScr.setTextColor(Color.parseColor("#FF1F204C"));
+            pauseTextScr.setTextSize(5.0f);
             timerRemain = mTimeLeft;
             timer = new CountDownTimer(timerRemain, 1000) {
                 @Override
@@ -220,6 +223,9 @@ public class BoardActivity extends AppCompatActivity {
             }.start();
         } else {
             pauseFlag = true;
+            smallRect.setTextSize(128.0f);
+            pauseTextScr.setTextColor(Color.parseColor("#FFFFFFFF"));
+            pauseTextScr.setTextSize(32.0f);
             bigRect.setTextSize(11414.0f);
             timer.cancel();
         }
@@ -260,7 +266,7 @@ public class BoardActivity extends AppCompatActivity {
     NumButton[] numpad;
     String input;
 
-    LinearLayout backLayout, pauseLayout;
+    LinearLayout backLayout, smallPauseLayout, pauseTextLayout, bigPauseLayout;
     TableLayout tl, numTl, upTl;
 
     @Override
@@ -268,6 +274,7 @@ public class BoardActivity extends AppCompatActivity {
         pauseGame();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -302,17 +309,32 @@ public class BoardActivity extends AppCompatActivity {
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         backLayout.addView(upTl, timerParams);
 
-        pauseLayout = new TableLayout(this);
-        bigRect = new TextView(this);
-        bigRect.setTextSize(14);
-        bigRect.setText("0");
-        bigRect.setTextColor(Color.parseColor("#FF1F204C"));
+        smallPauseLayout = new TableLayout(this);
+        smallRect = new TextView(this);
+        smallRect.setTextSize(5);
+        smallRect.setText("0");
+        smallRect.setTextColor(Color.parseColor("#FF1F204C"));
+        smallPauseLayout.addView(smallRect);
         TableLayout.LayoutParams pauseParams = new TableLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
         );
-        pauseLayout.addView(bigRect);
-        backLayout.addView(pauseLayout, pauseParams);
+        backLayout.addView(smallPauseLayout, pauseParams);
+        pauseTextLayout = new TableLayout(this);
+        pauseTextScr = new TextView(this);
+        pauseTextScr.setText("Pause");
+        pauseTextScr.setGravity(Gravity.CENTER);
+        pauseTextScr.setTextColor(Color.parseColor("#FF1F204C"));
+        pauseTextScr.setTextSize(5);
+        pauseTextLayout.addView(pauseTextScr);
+        backLayout.addView(pauseTextLayout, pauseParams);
+        bigPauseLayout = new TableLayout(this);
+        bigRect = new TextView(this);
+        bigRect.setTextSize(5);
+        bigRect.setText("0");
+        bigRect.setTextColor(Color.parseColor("#FF1F204C"));
+        bigPauseLayout.addView(bigRect);
+        backLayout.addView(bigPauseLayout, pauseParams);
 
         int[][] beginBoard = GenerateBoard.generate(fullViewBoard, holesInBoard);
         board = new Cell[fullViewBoard][fullViewBoard];
